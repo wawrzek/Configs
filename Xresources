@@ -1,8 +1,7 @@
 URxvt.scrollBar: off
-URxvt.login:True
-Urxvt.depth:32
-Urxvt.foreground:white
-Urxvt.background:rgba:1000/1000/1000/dddd
-!URxvt.background: black
+URxvt.login: True
+URxvt.depth: 32 
+URxvt.foreground: grey
+URxvt.background:rgba:0000/0000/0000/dddd
 URxvt.font: xft:Terminus
 
