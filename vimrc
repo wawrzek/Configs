@@ -31,3 +31,5 @@ map <F4> :if &hlsearch<Bar> set nohlsearch<Bar>else<Bar>set hlsearch<Bar>endif<C
 map <F5> :if &spell<Bar> set nospell<Bar>else<Bar>set spell<Bar>endif<CR>
 map <C-F5> :if &spelllang=="en"<Bar> set spl=pl spell<Bar>else<Bar>set spl=en<Bar>endif<CR>
 map <F6> :set spell!<CR><Bar>: echo "Spell Check: " . strpart("OffOn", 3 * &spell, 3)<CR>
+
+map ,# :s/^/#/<CR>
