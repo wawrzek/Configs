@@ -1,0 +1,10 @@
+[user]
+	name = Wawrzyniec 'Wawrzek' Niewodniczański
+	email = main@wawrzek.name
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[core]
+	editor = vim
