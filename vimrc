@@ -1,4 +1,5 @@
 set modeline "look for vim directives in code file
+call pathogen#infect() "call pathogen to easy configuration extension
 
 syntax on "colouring on
 colorscheme desert256 
@@ -14,7 +15,7 @@ set mousem=extend
   
 set tabstop=4
 set shiftwidth=4
-set noexpandtab
+set expandtab
 set nosmartindent
 set cindent
 
