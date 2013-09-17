@@ -1,0 +1,33 @@
+alias -s html=mvim
+
+
+voldiff ()
+{
+	opts=$1
+	grid=$2
+	vol=$3
+	file=$4
+	first=$5
+	second=$6
+	diff $opts =(ssh $grid-v$first-$vol "cat $file") =(ssh $grid-v$second-$vol "cat $file")
+}
+
+rdiff ()
+{
+	if [[ $1 = "-y" || $1 = "-u" ]]
+	then
+		option=$1
+		shift
+	else 
+		option=""
+	fi
+	echo $option
+	one=$1
+	shift
+	two=$1
+	shift
+	comm=$@
+	echo "Compare \"$comm\" between $one and $two"
+	diff $option =(ssh $one "$comm") =(ssh $two "$comm")	
+
+}

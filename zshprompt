@@ -1,0 +1,24 @@
+schedprompt() {
+  emulate -L zsh
+  zmodload -i zsh/sched
+
+  # Remove existing event, so that multiple calls to
+  # "schedprompt" work OK.  (You could put one in precmd to push
+  # the timer 30 seconds into the future, for example.)
+  integer i=${"${(@)zsh_scheduled_events#*:*:}"[(I)schedprompt]}
+  (( i )) && sched -$i
+
+  # Test that zle is running before calling the widget (recommended
+  # to avoid error messages).
+  # Otherwise it updates on entry to zle, so there's no loss.
+  zle && zle reset-prompt
+
+  # This ensures we're not too far off the start of the minute
+  sched +10 schedprompt
+}
+
+setopt PROMPT_SUBST
+PROMPT='[%F{cyan}%n%f@%B%F{green}%m%f%b] %F{yellow}$(pwd)%f #>'
+RPROMPT='[%B%T%b]'
+
+schedprompt

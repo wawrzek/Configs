@@ -1,16 +1,22 @@
 source ~/.aliasy
+source ~/.zaliasy
 
-setopt PROMPT_SUBST
-PROMPT='[%F{cyan}%n%f on %B%F{green}%m%f%b] %F{yellow}$(pwd)%f #>'
+zmodload zsh/mapfile
+
+source ~/.zshprompt
+setopt CORRECT
 
 bindkey -e
 bindkey '\e[3~' delete-char
 bindkey '^R' history-incremental-search-backward
 
-HISTSIZE=1000
-SAVEHIST=1000
+autoload -Uz compinit
+compinit
+
+HISTSIZE=10000
+SAVEHIST=10000
 HISTFILE=${HOME}/.zsh_history
-alias history='history -1000'
+alias history='history -10000'
 setopt append_history
 setopt inc_append_history
 setopt share_history
@@ -22,4 +28,4 @@ setopt hist_find_no_dups
 setopt hist_reduce_blanks
 setopt hist_no_functions
 
-#eval `dircolors ~/.kolory`
+#dircolors ~/.kolory

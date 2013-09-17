@@ -1,0 +1,33 @@
+--- zshrc	2012-07-18 14:32:19.000000000 +0100
++++ /Users/wniewodniczanski/.zshrc	2013-06-28 23:07:51.000000000 +0100
+@@ -1,14 +1,20 @@
+ source ~/.aliasy
++source ~/.zaliasy
+
+-setopt PROMPT_SUBST
+-PROMPT='[%F{cyan}%n%f on %B%F{green}%m%f%b] %F{yellow}$(pwd)%f #>'
++zmodload zsh/mapfile
++
++source ~/.zshprompt
++setopt CORRECT
+
+ bindkey -e
+ bindkey '\e[3~' delete-char
+ bindkey '^R' history-incremental-search-backward
+
+-HISTSIZE=1000
+-SAVEHIST=1000
++autoload -Uz compinit
++compinit
++
++HISTSIZE=10000
++SAVEHIST=10000
+ HISTFILE=${HOME}/.zsh_history
+ alias history='history -1000'
+ setopt append_history
+@@ -22,4 +28,4 @@
+ setopt hist_reduce_blanks
+ setopt hist_no_functions
+
+-#eval `dircolors ~/.kolory`
++#dircolors ~/.kolory
