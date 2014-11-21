@@ -1,13 +1,31 @@
-sshagent () {
+sshupdate () {
+	ssh-agent > ~/.ssh-env
+	source ~/.ssh-env
+}
 
-	SSHPID=`ps ax|grep -c "[s]sh-agent"`
-	if (( $SSHPID == 0 ))
+sshagent () {
+	SSHAGENT=$(ps ax|grep -c "[s]sh-agent")
+	if (( $SSHAGENT == 0 ))
 	then
-    ssh-agent > ~/.ssh-env
-    source ~/.ssh-env
-    ssh-add
+		sshupdate
 	else
-    source ~/.ssh-env
+		SSHPID="$(ps -eo pid,command | awk '/ssh-[a]gent/ {print $1}');"
+		SSHPID_ENV=$(awk  '/Agent/ {print $NF}' ~/.ssh-env)
+		if [[ $SSHPID == $SSHPID_ENV ]]
+		then
+	    source ~/.ssh-env
+		else
+			killall ssh-agent
+			sshupdate
+		fi
 	fi
 }
 
+sshadd () {
+	if (( $(ssh-add -l | grep -c $USER) == 0 ))
+	then
+		ssh-add
+	else
+		ssh-add -l
+	fi
+}
