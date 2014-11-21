@@ -5,6 +5,7 @@ execute pathogen#infect()
 filetype on
 filetype plugin indent on
 
+set t_Co=256
 if &diff
     syntax off "colouring on
     colorscheme calmar256-dark
