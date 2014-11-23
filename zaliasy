@@ -1,16 +1,4 @@
-alias -s html=mvim
-
-
-voldiff ()
-{
-	opts=$1
-	grid=$2
-	vol=$3
-	file=$4
-	first=$5
-	second=$6
-	diff $opts =(ssh $grid-v$first-$vol "cat $file") =(ssh $grid-v$second-$vol "cat $file")
-}
+alias ls='ls --color'
 
 rdiff ()
 {
