@@ -1,2 +1,2 @@
-colorscheme adobe
+colorscheme ChocolatePapaya
 set guifont=Terminus
