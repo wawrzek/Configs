@@ -17,7 +17,7 @@ endif
 match errorMsg /\s$/
 
 autocmd BufEnter *.txt colorscheme morning
-autocmd BufLeave *.txt colorscheme calmar256-dark
+autocmd BufLeave *.txt colorscheme blackboard
 
 set cursorline "highlight whole line with cursor (in colours define below)
 highlight CursorLine ctermbg=darkgray
@@ -33,18 +33,22 @@ set hlsearch "highlight search results
 set mouse=a
 set mousem=extend
 
-set tabstop=2
-set softtabstop=2 "for delete/backspace
-set shiftwidth=2
-set noexpandtab " set et moved to python
+set tabstop=2				" tab lenght
+set softtabstop=2		" for delete/backspace
+set shiftwidth=2		" for '>' '<'
+set noexpandtab			" set et moved to python
+
 "set cindent "smart indent
 set smartindent "smart indent
 set autoindent
 
-" Folding
+" Folding 
 set foldmethod=indent
 set foldlevel=99
 
+" SHOW INVIBLES
+nmap <leader>l :set list!<CR>
+set listchars=tab:▸\ ,eol:¬,trail:_
 
 " MOVE AROUND
 map <A-DOWN> gj
@@ -70,7 +74,8 @@ map <F2> :if &number<Bar> set nonumber<Bar>else<Bar>set number<Bar>endif<CR>
 map <F3> :if exists("syntax_on") <Bar> syntax off <Bar> else <Bar>syntax on <Bar> endif<CR>
 "map <F4> :if &g:syntastic_enable_higlighting==1<Bar>let g:syntastic_enable_highlighting = 0<Bar>else<Bar>ley g:syntastic_enable_highlighing = 1 <Bar> endif<CR>
 "map <F4> :SyntasticCheck<CR>
-map <F5> :if &hlsearch<Bar> set nohlsearch<Bar>else<Bar>set hlsearch<Bar>endif<CR>
+"map <F5> :if &hlsearch<Bar> set nohlsearch<Bar>else<Bar>set hlsearch<Bar>endif<CR>
+:noremap <leader>h :set hlsearch! <CR>
 
 
 " SPELLING
@@ -88,3 +93,17 @@ map ,# :s/^/#/<CR>
 let g:go_disable_autoinstall = 1
 
 "set statusline=%f,\ %m%r%y%w:,\ col=%d,\ line=%l/%L\ %p%%,\ time=%{localtime()}
+"
+nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
+function! <SID>StripTrailingWhitespaces()
+	" Preparation: save last search, and cursor position.
+	let _s=@/
+	let l = line(".")
+	let c = col(".")
+	" Do the business:
+	%s/\s\+$//e
+	" Clean up: restore previous search history, and cursor position
+	let @/=_s
+	call cursor(l,c)
+endfunction
+

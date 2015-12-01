@@ -6,6 +6,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zmodload zsh/mapfile
 
 source ~/.zshprompt
+
 setopt CORRECT
 
 bindkey -e
@@ -35,3 +36,7 @@ sshagent
 
 source ~/.aliasy
 source ~/.zaliasy
+
+source ~/.zwork
+
+source ~/.zaws
