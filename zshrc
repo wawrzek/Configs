@@ -38,5 +38,7 @@ source ~/.aliasy
 source ~/.zaliasy
 
 source ~/.zwork
+source ~/.zsh_functions
 
 source ~/.zaws
+. <(azure --completion)

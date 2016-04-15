@@ -18,6 +18,8 @@ match errorMsg /\s$/
 
 autocmd BufEnter *.txt colorscheme morning
 autocmd BufLeave *.txt colorscheme blackboard
+autocmd BufEnter *.json colorscheme blackboard
+
 
 set cursorline "highlight whole line with cursor (in colours define below)
 highlight CursorLine ctermbg=darkgray

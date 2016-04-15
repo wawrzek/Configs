@@ -6,5 +6,6 @@ else
 		colorscheme ChocolatePapaya
 endif
 autocmd BufLeave *.txt colorscheme ChocolatePapaya
+autocmd BufLeave *.json colorscheme ChocolatePapaya
 
 set guifont=Terminus

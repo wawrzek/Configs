@@ -1,3 +1,11 @@
 ping_ip() {
 	ping 192.168.1.$1
 }
+
+termname() {
+	echo -en "\e]1; $1 \a"
+}
+
+azure-debug() {
+	azure group log show $1 --last-deployment --json | jq '.[] | select(.status.value == "Failed")'
+}
