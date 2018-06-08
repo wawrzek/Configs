@@ -23,10 +23,10 @@ sshagent () {
 
 sshadd () {
 	source ~/.ssh-env
-	if (( $(ssh-add -l | grep -c $USER) == 0 ))
+	if (( $(ssh-add -l | wc -l) ==  $(ls -1 ~/.ssh/*.prv| wc -l) ))
 	then
-			ssh-add ~/.ssh/*.prv
-	else
 		ssh-add -l
+	else
+		ssh-add ~/.ssh/*.prv
 	fi
 }
