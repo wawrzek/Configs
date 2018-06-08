@@ -22,14 +22,10 @@ sshagent () {
 }
 
 sshadd () {
+	source ~/.ssh-env
 	if (( $(ssh-add -l | grep -c $USER) == 0 ))
 	then
-		if [[ $(uname) == "Darwin" ]]
-			then
-				ssh-add ~/.ssh/*.prv
-			else
-				ssh-add $(file ~/.ssh/*| awk -F: '/PEM/ {print $1}')
-			fi
+			ssh-add ~/.ssh/*.prv
 	else
 		ssh-add -l
 	fi

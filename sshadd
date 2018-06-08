@@ -1,7 +1,0 @@
-if [[ `ssh-add -l | grep -c $USER` -eq 0 ]]
-then
-	ssh-add
-else 
-	echo `ssh-add -l`
-fi
-

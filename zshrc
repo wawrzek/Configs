@@ -34,10 +34,6 @@ setopt hist_no_functions
 source ~/.zssh
 sshagent
 
-source ~/.aliasy
-source ~/.zaliasy
-
-source ~/.zwork
 source ~/.zsh_functions
 
 source ~/.zaws
