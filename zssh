@@ -23,7 +23,7 @@ sshagent () {
 
 sshadd () {
 	source ~/.ssh-env
-	if (( $(ssh-add -l | wc -l) ==  $(ls -1 ~/.ssh/*.prv| wc -l) ))
+	if (( $(ssh-add -l | wc -l) >=  $(ls -1 ~/.ssh/*.prv| wc -l) ))
 	then
 		ssh-add -l
 	else
