@@ -23,10 +23,12 @@ sshagent () {
 
 sshadd () {
 	source ~/.ssh-env
-	if (( $(ssh-add -l | wc -l) ==  $(ls -1 ~/.ssh/*.prv| wc -l) ))
+	set -x
+	if ( (( $(ssh-add -l | grep -c "The agent has no identities.") != 1  )) && (( $(ssh-add -l | wc -l) ==  $(ls -1 ~/.ssh/*.prv| wc -l) )) )
 	then
 		ssh-add -l
 	else
 		ssh-add ~/.ssh/*.prv
 	fi
+	set +x
 }
