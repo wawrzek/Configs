@@ -1,4 +1,4 @@
-if &diff
+::q::if &diff
 		syntax off "colouring on
 		colorscheme calmar256-dark
 else
