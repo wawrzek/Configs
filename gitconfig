@@ -1,6 +1,6 @@
 [user]
 	name = Wawrzyniec 'Wawrzek' Niewodniczański
-	email = main@wawrzek.name
+	email = wawrzek@r3.com
 [color]
 	branch = auto
 	diff = auto
@@ -10,4 +10,9 @@
 	editor = vim
 	excludesfile = ~/.gitignore
 [push]
-	default = matching
+	default = simple
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
