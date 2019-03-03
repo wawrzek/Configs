@@ -12,7 +12,8 @@ vim_configs=(vim vimrc gvimrc)
 git_configs=(gitignore gitconfig)
 
 copy_config $zsh_configs
-copy_config $vim_configs $git_configs
+copy_config $vim_configs
+copy_config $git_configs
 
 sources=(zshenv zshrc)
 for config in $sources
