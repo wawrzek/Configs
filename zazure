@@ -1,0 +1,6 @@
+AZ_HELP=/usr/local/etc/bash_completion.d/az
+if [ -e $AZ_HELP ]
+then
+	autoload -U +X bashcompinit && bashcompinit
+	source $AZ_HELP
+fi
