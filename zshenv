@@ -1,4 +1,4 @@
-export PATH=$PATH:/sbin:/usr/sbin:~/bin
+export PATH=$PATH:/sbin:/usr/sbin:$HOME/bin:/usr/local/bin
 export EDITOR=vim
 export MAIL=$HOME/Mail
 export MAILDIR=$MAIL
