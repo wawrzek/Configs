@@ -44,7 +44,7 @@ set noexpandtab			" set et moved to python
 set smartindent "smart indent
 set autoindent
 
-" Folding 
+" Folding
 set foldmethod=indent
 set foldlevel=99
 
