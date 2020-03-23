@@ -1,3 +1,8 @@
-Extra VIM bundles
+## Vim preconfigure
+* Install pathogen
+* Copy following bundles:
+- ansible-vim
+- vim-colors-bluedrake
+- vim-grammarous
+- vim-terraform
 - synastic
-- vim-ansible-yaml
