@@ -1,4 +1,21 @@
 set modeline "look for vim directives in code file
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+"Plug 'tpope/vim-sensible'
+"Plug 'junegunn/seoul256.vim'
+Plug 'pearofducks/ansible-vim'
+Plug 'hashivim/vim-terraform'
+Plug 'michaelmalick/vim-colors-bluedrake'
+Plug 'rhysd/vim-grammarous'
+Plug 'vim-syntastic/syntastic'
+call plug#end()
+
 execute pathogen#infect()
 "call pathogen to easy configuration extension
 
@@ -6,23 +23,25 @@ filetype on
 filetype plugin indent on
 
 set t_Co=256
+set background=light
+colorscheme bluedrake
+
 if &diff
-    syntax off "colouring on
-    colorscheme calmar256-dark
+	syntax off "colouring on
+	colorscheme calmar256-dark
 else
-		syntax on "colouring on
-		colorscheme blackboard
+	syntax on "colouring on
+	colorscheme blackboard
 endif
 
 match errorMsg /\s$/
 
-autocmd BufEnter *.txt colorscheme morning
-autocmd BufLeave *.txt colorscheme blackboard
-autocmd BufEnter *.json colorscheme blackboard
-
-
-set cursorline "highlight whole line with cursor (in colours define below)
-highlight CursorLine ctermbg=darkgray
+" To remember in the future
+"autocmd BufEnter *.txt colorscheme morning
+"autocmd BufLeave *.txt colorscheme blackboard
+"autocmd BufEnter *.json colorscheme blackboard
+"set cursorline "highlight whole line with cursor (in colours define below)
+"highlight CursorLine ctermbg=darkgray
 set ruler "show current positon of the cursor
 " set cursorcolumn
 "not to show but to remember
@@ -77,8 +96,8 @@ map <F3> :if exists("syntax_on") <Bar> syntax off <Bar> else <Bar>syntax on <Bar
 "map <F4> :if &g:syntastic_enable_higlighting==1<Bar>let g:syntastic_enable_highlighting = 0<Bar>else<Bar>ley g:syntastic_enable_highlighing = 1 <Bar> endif<CR>
 "map <F4> :SyntasticCheck<CR>
 "map <F5> :if &hlsearch<Bar> set nohlsearch<Bar>else<Bar>set hlsearch<Bar>endif<CR>
-:noremap <leader>h :set hlsearch! <CR>
-
+":noremap <leader>h :set hlsearch! <CR>
+"map <Esc> :noh<cr>
 
 " SPELLING
 set spellsuggest=15
