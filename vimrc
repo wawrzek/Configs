@@ -1,5 +1,5 @@
-set modeline "look for vim directives in code file
 
+" Setup vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -16,23 +16,24 @@ Plug 'rhysd/vim-grammarous'
 Plug 'vim-syntastic/syntastic'
 call plug#end()
 
-execute pathogen#infect()
 "call pathogen to easy configuration extension
+execute pathogen#infect()
 
 filetype on
 filetype plugin indent on
+set modeline "look for vim directives in code file
 
+" Set colours
 set t_Co=256
-set background=light
+set background=dark
 colorscheme bluedrake
+map <leader>b :if &background=='dark'<Bar>set background=light<Bar>else<Bar>set background=dark<Bar>endif<CR>
 
 if &diff
-	syntax off "colouring on
+	syntax off
 	colorscheme calmar256-dark
 else
-	syntax on "colouring on
-	set t_Co=256
-	set background=light
+	syntax on
 	colorscheme bluedrake
 endif
 
@@ -44,13 +45,15 @@ match errorMsg /\s$/
 "autocmd BufEnter *.json colorscheme blackboard
 "set cursorline "highlight whole line with cursor (in colours define below)
 "highlight CursorLine ctermbg=darkgray
-set ruler "show current positon of the cursor
 " set cursorcolumn
-"not to show but to remember
 "
+set ruler "show current position of the cursor
 set number "show line numbers
 set showmatch "show matching bracket
 set laststatus=2 "show status line for each window
+
+"set statusline=%f,\ %m%r%y%w:,\ col=%d,\ line=%l/%L\ %p%%,\ time=%{localtime()}
+"
 set hlsearch "highlight search results
 
 set mouse=a
@@ -69,11 +72,11 @@ set autoindent
 set foldmethod=indent
 set foldlevel=99
 
-" SHOW INVIBLES
+" show invisibles
 nmap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬,trail:_
 
-" MOVE AROUND
+" move around
 map <A-DOWN> gj
 map <A-UP> gk
 imap <A-UP> <ESC>gki
@@ -86,12 +89,21 @@ nmap <buffer> <BS> <C-T>
 " to file under cursor
 :map gf :edit <cfile><CR>
 
-"KASOWANIE
+" delete
 inoremap <bs> <c-g>u<bs>
 inoremap <cr> <c-g>u<cr>
 inoremap <del> <c-g>u<del>
 inoremap <c-w> <c-g>u<c-w>
 
+
+
+" spelling
+set spellsuggest=15
+set spelllang=en
+map <leader>s :if &spell<Bar> setlocal nospell<Bar>else<Bar>setlocal spell<Bar>endif<CR>
+
+
+" Special characters
 map <C-F2> :set et<CR>
 map <F2> :if &number<Bar> set nonumber<Bar>else<Bar>set number<Bar>endif<CR>
 map <F3> :if exists("syntax_on") <Bar> syntax off <Bar> else <Bar>syntax on <Bar> endif<CR>
@@ -100,11 +112,6 @@ map <F3> :if exists("syntax_on") <Bar> syntax off <Bar> else <Bar>syntax on <Bar
 "map <F5> :if &hlsearch<Bar> set nohlsearch<Bar>else<Bar>set hlsearch<Bar>endif<CR>
 ":noremap <leader>h :set hlsearch! <CR>
 "map <Esc> :noh<cr>
-
-" SPELLING
-set spellsuggest=15
-set spelllang=en
-
 map <F6> :if &spell<Bar> setlocal nospell<Bar>else<Bar>setlocal spell<Bar>endif<CR>
 map <C-F6> :if &spelllang==en<Bar> set spl=pl spell<Bar>else<Bar>set spl=en<Bar>endif<CR>
 map <F7> :set spell!<CR><Bar>: echo "Spell Check: " . strpart("OffOn", 3 * &spell, 3)<CR>
@@ -115,8 +122,8 @@ map ,# :s/^/#/<CR>
 
 let g:go_disable_autoinstall = 1
 
-"set statusline=%f,\ %m%r%y%w:,\ col=%d,\ line=%l/%L\ %p%%,\ time=%{localtime()}
 "
+" Function to remove white spaces
 nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
 function! <SID>StripTrailingWhitespaces()
 	" Preparation: save last search, and cursor position.
