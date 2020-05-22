@@ -31,7 +31,9 @@ if &diff
 	colorscheme calmar256-dark
 else
 	syntax on "colouring on
-	colorscheme blackboard
+	set t_Co=256
+	set background=light
+	colorscheme bluedrake
 endif
 
 match errorMsg /\s$/
