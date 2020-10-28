@@ -6,13 +6,13 @@ plugin/AnsiEscPlugin.vim	[[[1
 " AnsiEscPlugin.vim
 "   Author: Charles E. Campbell
 "   Date:   Apr 07, 2010
-"   Version: 13r
+"   Version: 13t
 " ---------------------------------------------------------------------
 "  Load Once: {{{1
 if &cp || exists("g:loaded_AnsiEscPlugin")
  finish
 endif
-let g:loaded_AnsiEscPlugin = "v13r"
+let g:loaded_AnsiEscPlugin = "v13t"
 let s:keepcpo              = &cpo
 set cpo&vim
 
@@ -34,12 +34,12 @@ let &cpo= s:keepcpo
 unlet s:keepcpo
 " vim: ts=4 fdm=marker
 autoload/AnsiEsc.vim	[[[1
-1430
+1631
 " AnsiEsc.vim: Uses vim 7.0 syntax highlighting
-" Language:		Text with ansi escape sequences
-" Maintainer:	Charles E. Campbell <NdrOchipS@PcampbellAfamily.Mbiz>
-" Version:		13r	ASTRO-ONLY
-" Date:		Apr 11, 2019
+" Language:	Text with ansi escape sequences
+" Author:	Charles E Campbell <NcampObell@SdrPchip.AorgM-NOSPAM>
+" Version:	13t	ASTRO-ONLY
+" Date:	Jul 21, 2020
 "
 " Usage: :AnsiEsc  (toggles)
 " Note:   This plugin requires +conceal
@@ -52,7 +52,7 @@ autoload/AnsiEsc.vim	[[[1
 if exists("g:loaded_AnsiEsc")
  finish
 endif
-let g:loaded_AnsiEsc = "v13r"
+let g:loaded_AnsiEsc = "v13t"
 if v:version < 700
  echohl WarningMsg
  echo "***warning*** this version of AnsiEsc needs vim 7.0"
@@ -140,10 +140,12 @@ fun! AnsiEsc#AnsiEsc(rebuild)
    syn match ansiSuppress	conceal	'\e\[[0-9;]*[^m]'
    syn match ansiSuppress	conceal	'\e\[?\d*[^m]'
    syn match ansiSuppress	conceal	'\b'
+   syn match ansiSuppress	conceal	'\e\[2[234]m'
   else
    syn match ansiSuppress		'\e\[[0-9;]*[^m]'
    syn match ansiSuppress		'\e\[?\d*[^m]'
    syn match ansiSuppress		'\b'
+   syn match ansiSuppress		'\e\[2[234]m'
   endif
 
   " ------------------------------
@@ -289,14 +291,14 @@ fun! AnsiEsc#AnsiEsc(rebuild)
    syn region ansiInheritItalicMagenta	contained	start="\e\[35m" skip='\e\[K' end="\ze\e\[;\=[03m]"  contains=ansiConceal	nextgroup=@AnsiItalicGroup
    syn region ansiInheritItalicCyan		contained	start="\e\[36m" skip='\e\[K' end="\ze\e\[;\=[03m]"  contains=ansiConceal	nextgroup=@AnsiItalicGroup
    syn region ansiInheritItalicWhite	contained	start="\e\[37m" skip='\e\[K' end="\ze\e\[;\=[03m]"  contains=ansiConceal	nextgroup=@AnsiItalicGroup
-   hi link ansiInheritItalicBlack		ansiItalicBlack
-   hi link ansiInheritItalicRed		ansiItalicRed
-   hi link ansiInheritItalicGreen		ansiItalicGreen
-   hi link ansiInheritItalicYellow		ansiItalicYellow
-   hi link ansiInheritItalicBlue		ansiItalicBlue
-   hi link ansiInheritItalicMagenta		ansiItalicMagenta
-   hi link ansiInheritItalicCyan		ansiItalicCyan
-   hi link ansiInheritItalicWhite		ansiItalicWhite
+   hi link ansiInheritItalicBlack	ansiItalicBlack
+   hi link ansiInheritItalicRed	ansiItalicRed
+   hi link ansiInheritItalicGreen	ansiItalicGreen
+   hi link ansiInheritItalicYellow	ansiItalicYellow
+   hi link ansiInheritItalicBlue	ansiItalicBlue
+   hi link ansiInheritItalicMagenta	ansiItalicMagenta
+   hi link ansiInheritItalicCyan	ansiItalicCyan
+   hi link ansiInheritItalicWhite	ansiItalicWhite
 
    syn cluster AnsiUnderlineGroup    contains=ansiInheritUnderlineBlack,ansiInheritUnderlineRed,ansiInheritUnderlineGreen,ansiInheritUnderlineYellow,ansiInheritUnderlineBlue,ansiInheritUnderlineMagenta,ansiInheritUnderlineCyan,ansiInheritUnderlineWhite
    syn region ansiInheritUnderlineBlack	contained	start="\e\[30m" skip='\e\[K' end="\ze\e\[;\=[03m]"  contains=ansiConceal	nextgroup=@AnsiUnderlineGroup
@@ -308,15 +310,15 @@ fun! AnsiEsc#AnsiEsc(rebuild)
    syn region ansiInheritUnderlineCyan	contained	start="\e\[36m" skip='\e\[K' end="\ze\e\[;\=[03m]"  contains=ansiConceal	nextgroup=@AnsiUnderlineGroup
    syn region ansiInheritUnderlineWhite	contained	start="\e\[37m" skip='\e\[K' end="\ze\e\[;\=[03m]"  contains=ansiConceal	nextgroup=@AnsiUnderlineGroup
    hi link ansiInheritUnderlineBlack	ansiUnderlineBlack
-   hi link ansiInheritUnderlineRed		ansiUnderlineRed
+   hi link ansiInheritUnderlineRed	ansiUnderlineRed
    hi link ansiInheritUnderlineGreen	ansiUnderlineGreen
    hi link ansiInheritUnderlineYellow	ansiUnderlineYellow
-   hi link ansiInheritUnderlineBlue		ansiUnderlineBlue
+   hi link ansiInheritUnderlineBlue	ansiUnderlineBlue
    hi link ansiInheritUnderlineMagenta	ansiUnderlineMagenta
-   hi link ansiInheritUnderlineCyan		ansiUnderlineCyan
+   hi link ansiInheritUnderlineCyan	ansiUnderlineCyan
    hi link ansiInheritUnderlineWhite	ansiUnderlineWhite
 
-   syn cluster AnsiBlackBgGroup contains=ansiBgBlackBlack,ansiBgRedBlack,ansiBgGreenBlack,ansiBgYellowBlack,ansiBgBlueBlack,ansiBgMagentaBlack,ansiBgCyanBlack,ansiBgWhiteBlack
+   syn cluster AnsiBlackBgGroup contains=ansiBgBlackBlack,ansiBgRedBlack,ansiBgGreenBlack,ansiBgYellowBlack,ansiBgBlueBlack,ansiBgMagentaBlack,ansiBgCyanBlack,ansiBgWhiteBlack,ansiBgBoldBlackBlack,ansiBgBoldRedBlack,ansiBgBoldGreenBlack,ansiBgBoldYellowBlack,ansiBgBoldBlueBlack,ansiBgBoldMagentaBlack,ansiBgBoldCyanBlack,ansiBgBoldWhiteBlack
    syn region ansiBlackBg	concealends	matchgroup=ansiNone start="\e\[;\=0\{0,2};\=\%(1;\)\=40\%(;1\)\=m" skip='\e\[K' end="\ze\e\[;\=[04m]"  contains=@AnsiBlackBgGroup,ansiConceal
    syn region ansiBgBlackBlack	contained	start="\e\[30m" skip='\e\[K' end="\ze\e\[;\=[03m]"  contains=ansiConceal
    syn region ansiBgRedBlack	contained	start="\e\[31m" skip='\e\[K' end="\ze\e\[;\=[03m]"  contains=ansiConceal
@@ -326,35 +328,67 @@ fun! AnsiEsc#AnsiEsc(rebuild)
    syn region ansiBgMagentaBlack	contained	start="\e\[35m" skip='\e\[K' end="\ze\e\[;\=[03m]"  contains=ansiConceal
    syn region ansiBgCyanBlack	contained	start="\e\[36m" skip='\e\[K' end="\ze\e\[;\=[03m]"  contains=ansiConceal
    syn region ansiBgWhiteBlack	contained	start="\e\[37m" skip='\e\[K' end="\ze\e\[;\=[03m]"  contains=ansiConceal
-   hi link ansiBgBlackBlack	ansiBlackBlack
-   hi link ansiBgRedBlack	ansiRedBlack
-   hi link ansiBgGreenBlack	ansiGreenBlack
+   hi link ansiBgBlackBlack		ansiBlackBlack
+   hi link ansiBgRedBlack		ansiRedBlack
+   hi link ansiBgGreenBlack		ansiGreenBlack
    hi link ansiBgYellowBlack	ansiYellowBlack
-   hi link ansiBgBlueBlack	ansiBlueBlack
+   hi link ansiBgBlueBlack		ansiBlueBlack
    hi link ansiBgMagentaBlack	ansiMagentaBlack
-   hi link ansiBgCyanBlack	ansiCyanBlack
-   hi link ansiBgWhiteBlack	ansiWhiteBlack
+   hi link ansiBgCyanBlack		ansiCyanBlack
+   hi link ansiBgWhiteBlack		ansiWhiteBlack
+   syn region ansiBgBoldBlackBlack	contained	start="\e\[1;30m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldRedBlack	contained	start="\e\[1;31m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldGreenBlack	contained	start="\e\[1;32m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldYellowBlack	contained	start="\e\[1;33m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldBlueBlack	contained	start="\e\[1;34m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldMagentaBlack	contained	start="\e\[1;35m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldCyanBlack	contained	start="\e\[1;36m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldWhiteBlack	contained	start="\e\[1;37m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   hi link ansiBgBoldBlackBlack	ansiBoldBlackBlack
+   hi link ansiBgBoldRedBlack	ansiBoldRedBlack
+   hi link ansiBgBoldGreenBlack	ansiBoldGreenBlack
+   hi link ansiBgBoldYellowBlack	ansiBoldYellowBlack
+   hi link ansiBgBoldBlueBlack	ansiBoldBlueBlack
+   hi link ansiBgBoldMagentaBlack	ansiBoldMagentaBlack
+   hi link ansiBgBoldCyanBlack	ansiBoldCyanBlack
+   hi link ansiBgBoldWhiteBlack	ansiBoldWhiteBlack
 
-   syn cluster AnsiRedBgGroup contains=ansiBgBlackRed,ansiBgRedRed,ansiBgGreenRed,ansiBgYellowRed,ansiBgBlueRed,ansiBgMagentaRed,ansiBgCyanRed,ansiBgWhiteRed
+   syn cluster AnsiRedBgGroup contains=ansiBgBlackRed,ansiBgRedRed,ansiBgGreenRed,ansiBgYellowRed,ansiBgBlueRed,ansiBgMagentaRed,ansiBgCyanRed,ansiBgWhiteRed,ansiBgBoldBlackRed,ansiBgBoldRedRed,ansiBgBoldGreenRed,ansiBgBoldYellowRed,ansiBgBoldBlueRed,ansiBgBoldMagentaRed,ansiBgBoldCyanRed,ansiBgBoldWhiteRed
    syn region ansiRedBg		concealends matchgroup=ansiNone start="\e\[;\=0\{0,2};\=\%(1;\)\=41\%(;1\)\=m" skip='\e\[K' end="\ze\e\[;\=[04m]"  contains=@AnsiRedBgGroup,ansiConceal
    syn region ansiBgBlackRed	contained	start="\e\[30m" skip='\e\[K' end="\ze\e\[;\=[03m]" contains=ansiConceal
-   syn region ansiBgRedRed	contained	start="\e\[31m" skip='\e\[K' end="\ze\e\[;\=[03m]" contains=ansiConceal
+   syn region ansiBgRedRed		contained	start="\e\[31m" skip='\e\[K' end="\ze\e\[;\=[03m]" contains=ansiConceal
    syn region ansiBgGreenRed	contained	start="\e\[32m" skip='\e\[K' end="\ze\e\[;\=[03m]" contains=ansiConceal
    syn region ansiBgYellowRed	contained	start="\e\[33m" skip='\e\[K' end="\ze\e\[;\=[03m]" contains=ansiConceal
-   syn region ansiBgBlueRed	contained	start="\e\[34m" skip='\e\[K' end="\ze\e\[;\=[03m]" contains=ansiConceal
+   syn region ansiBgBlueRed		contained	start="\e\[34m" skip='\e\[K' end="\ze\e\[;\=[03m]" contains=ansiConceal
    syn region ansiBgMagentaRed	contained	start="\e\[35m" skip='\e\[K' end="\ze\e\[;\=[03m]" contains=ansiConceal
-   syn region ansiBgCyanRed	contained	start="\e\[36m" skip='\e\[K' end="\ze\e\[;\=[03m]" contains=ansiConceal
+   syn region ansiBgCyanRed		contained	start="\e\[36m" skip='\e\[K' end="\ze\e\[;\=[03m]" contains=ansiConceal
    syn region ansiBgWhiteRed	contained	start="\e\[37m" skip='\e\[K' end="\ze\e\[;\=[03m]" contains=ansiConceal
    hi link ansiBgBlackRed	ansiBlackRed
-   hi link ansiBgRedRed		ansiRedRed
+   hi link ansiBgRedRed	ansiRedRed
    hi link ansiBgGreenRed	ansiGreenRed
    hi link ansiBgYellowRed	ansiYellowRed
    hi link ansiBgBlueRed	ansiBlueRed
    hi link ansiBgMagentaRed	ansiMagentaRed
    hi link ansiBgCyanRed	ansiCyanRed
    hi link ansiBgWhiteRed	ansiWhiteRed
+   syn region ansiBgBoldBlackRed	contained	start="\e\[1;30m" skip='\e\[K' end="\ze\e\[;\=[013m]" contains=ansiConceal
+   syn region ansiBgBoldRedRed	contained	start="\e\[1;31m" skip='\e\[K' end="\ze\e\[;\=[013m]" contains=ansiConceal
+   syn region ansiBgBoldGreenRed	contained	start="\e\[1;32m" skip='\e\[K' end="\ze\e\[;\=[013m]" contains=ansiConceal
+   syn region ansiBgBoldYellowRed	contained	start="\e\[1;33m" skip='\e\[K' end="\ze\e\[;\=[013m]" contains=ansiConceal
+   syn region ansiBgBoldBlueRed	contained	start="\e\[1;34m" skip='\e\[K' end="\ze\e\[;\=[013m]" contains=ansiConceal
+   syn region ansiBgBoldMagentaRed	contained	start="\e\[1;35m" skip='\e\[K' end="\ze\e\[;\=[013m]" contains=ansiConceal
+   syn region ansiBgBoldCyanRed	contained	start="\e\[1;36m" skip='\e\[K' end="\ze\e\[;\=[013m]" contains=ansiConceal
+   syn region ansiBgBoldWhiteRed	contained	start="\e\[1;37m" skip='\e\[K' end="\ze\e\[;\=[013m]" contains=ansiConceal
+   hi link ansiBgBoldBlackRed	ansiBoldBlackRed
+   hi link ansiBgBoldRedRed		ansiBoldRedRed
+   hi link ansiBgBoldGreenRed	ansiBoldGreenRed
+   hi link ansiBgBoldYellowRed	ansiBoldYellowRed
+   hi link ansiBgBoldBlueRed	ansiBoldBlueRed
+   hi link ansiBgBoldMagentaRed	ansiBoldMagentaRed
+   hi link ansiBgBoldCyanRed	ansiBoldCyanRed
+   hi link ansiBgBoldWhiteRed	ansiBoldWhiteRed
 
-   syn cluster AnsiGreenBgGroup contains=ansiBgBlackGreen,ansiBgRedGreen,ansiBgGreenGreen,ansiBgYellowGreen,ansiBgBlueGreen,ansiBgMagentaGreen,ansiBgCyanGreen,ansiBgWhiteGreen
+   syn cluster AnsiGreenBgGroup contains=ansiBgBlackGreen,ansiBgRedGreen,ansiBgGreenGreen,ansiBgYellowGreen,ansiBgBlueGreen,ansiBgMagentaGreen,ansiBgCyanGreen,ansiBgWhiteGreen,ansiBgBoldBlackGreen,ansiBgBoldRedGreen,ansiBgBoldGreenGreen,ansiBgBoldYellowGreen,ansiBgBoldBlueGreen,ansiBgBoldMagentaGreen,ansiBgBoldCyanGreen,ansiBgBoldWhiteGreen
    syn region ansiGreenBg	concealends matchgroup=ansiNone start="\e\[;\=0\{0,2};\=\%(1;\)\=42\%(;1\)\=m" skip='\e\[K' end="\ze\e\[;\=[04m]"  contains=@AnsiGreenBgGroup,ansiConceal
    syn region ansiBgBlackGreen	contained	start="\e\[30m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
    syn region ansiBgRedGreen	contained	start="\e\[31m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
@@ -372,8 +406,24 @@ fun! AnsiEsc#AnsiEsc(rebuild)
    hi link ansiBgMagentaGreen	ansiMagentaGreen
    hi link ansiBgCyanGreen	ansiCyanGreen
    hi link ansiBgWhiteGreen	ansiWhiteGreen
+   syn region ansiBgBoldBlackGreen	contained	start="\e\[1;30m" skip='\e\[K' end="\ze\e\[[013m]" contains=ansiConceal
+   syn region ansiBgBoldRedGreen	contained	start="\e\[1;31m" skip='\e\[K' end="\ze\e\[[013m]" contains=ansiConceal
+   syn region ansiBgBoldGreenGreen	contained	start="\e\[1;32m" skip='\e\[K' end="\ze\e\[[013m]" contains=ansiConceal
+   syn region ansiBgBoldYellowGreen	contained	start="\e\[1;33m" skip='\e\[K' end="\ze\e\[[013m]" contains=ansiConceal
+   syn region ansiBgBoldBlueGreen	contained	start="\e\[1;34m" skip='\e\[K' end="\ze\e\[[013m]" contains=ansiConceal
+   syn region ansiBgBoldMagentaGreen	contained	start="\e\[1;35m" skip='\e\[K' end="\ze\e\[[013m]" contains=ansiConceal
+   syn region ansiBgBoldCyanGreen	contained	start="\e\[1;36m" skip='\e\[K' end="\ze\e\[[013m]" contains=ansiConceal
+   syn region ansiBgBoldWhiteGreen	contained	start="\e\[1;37m" skip='\e\[K' end="\ze\e\[[013m]" contains=ansiConceal
+   hi link ansiBgBoldBlackGreen	ansiBoldBlackGreen
+   hi link ansiBgBoldGreenGreen	ansiBoldGreenGreen
+   hi link ansiBgBoldRedGreen	ansiBoldRedGreen
+   hi link ansiBgBoldYellowGreen	ansiBoldYellowGreen
+   hi link ansiBgBoldBlueGreen	ansiBoldBlueGreen
+   hi link ansiBgBoldMagentaGreen	ansiBoldMagentaGreen
+   hi link ansiBgBoldCyanGreen	ansiBoldCyanGreen
+   hi link ansiBgBoldWhiteGreen	ansiBoldWhiteGreen
 
-   syn cluster AnsiYellowBgGroup contains=ansiBgBlackYellow,ansiBgRedYellow,ansiBgGreenYellow,ansiBgYellowYellow,ansiBgBlueYellow,ansiBgMagentaYellow,ansiBgCyanYellow,ansiBgWhiteYellow
+   syn cluster AnsiYellowBgGroup contains=ansiBgBlackYellow,ansiBgRedYellow,ansiBgGreenYellow,ansiBgYellowYellow,ansiBgBlueYellow,ansiBgMagentaYellow,ansiBgCyanYellow,ansiBgWhiteYellow,ansiBgBoldBlackYellow,ansiBgBoldRedYellow,ansiBgBoldGreenYellow,ansiBgBoldYellowYellow,ansiBgBoldBlueYellow,ansiBgBoldMagentaYellow,ansiBgBoldCyanYellow,ansiBgBoldWhiteYellow
    syn region ansiYellowBg	concealends matchgroup=ansiNone start="\e\[;\=0\{0,2};\=\%(1;\)\=43\%(;1\)\=m" skip='\e\[K' end="\ze\e\[;\=[04m]"  contains=@AnsiYellowBgGroup,ansiConceal
    syn region ansiBgBlackYellow	contained	start="\e\[30m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
    syn region ansiBgRedYellow	contained	start="\e\[31m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
@@ -384,34 +434,66 @@ fun! AnsiEsc#AnsiEsc(rebuild)
    syn region ansiBgCyanYellow	contained	start="\e\[36m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
    syn region ansiBgWhiteYellow	contained	start="\e\[37m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
    hi link ansiBgBlackYellow	ansiBlackYellow
-   hi link ansiBgRedYellow	ansiRedYellow
+   hi link ansiBgRedYellow		ansiRedYellow
    hi link ansiBgGreenYellow	ansiGreenYellow
    hi link ansiBgYellowYellow	ansiYellowYellow
-   hi link ansiBgBlueYellow	ansiBlueYellow
+   hi link ansiBgBlueYellow		ansiBlueYellow
    hi link ansiBgMagentaYellow	ansiMagentaYellow
-   hi link ansiBgCyanYellow	ansiCyanYellow
+   hi link ansiBgCyanYellow		ansiCyanYellow
    hi link ansiBgWhiteYellow	ansiWhiteYellow
+   syn region ansiBgBoldBlackYellow	contained	start="\e\[1;30m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldRedYellow	contained	start="\e\[1;31m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldGreenYellow	contained	start="\e\[1;32m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldYellowYellow	contained	start="\e\[1;33m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldBlueYellow	contained	start="\e\[1;34m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldMagentaYellow	contained	start="\e\[1;35m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldCyanYellow	contained	start="\e\[1;36m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldWhiteYellow	contained	start="\e\[1;37m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   hi link ansiBgBoldBlackYellow	ansiBoldBlackYellow
+   hi link ansiBgBoldRedYellow	ansiBoldRedYellow
+   hi link ansiBgBoldGreenYellow	ansiBoldGreenYellow
+   hi link ansiBgBoldYellowYellow	ansiBoldYellowYellow
+   hi link ansiBgBoldBlueYellow	ansiBoldBlueYellow
+   hi link ansiBgBoldMagentaYellow	ansiBoldMagentaYellow
+   hi link ansiBgBoldCyanYellow	ansiBoldCyanYellow
+   hi link ansiBgBoldWhiteYellow	ansiBoldWhiteYellow
 
-   syn cluster AnsiBlueBgGroup contains=ansiBgBlackBlue,ansiBgRedBlue,ansiBgGreenBlue,ansiBgYellowBlue,ansiBgBlueBlue,ansiBgMagentaBlue,ansiBgCyanBlue,ansiBgWhiteBlue
+   syn cluster AnsiBlueBgGroup contains=ansiBgBlackBlue,,ansiBgRedBlue,ansiBgGreenBlue,ansiBgYellowBlue,ansiBgBlueBlue,ansiBgMagentaBlue,ansiBgCyanBlue,ansiBgWhiteBlue,ansiBgBoldBlackBlue,ansiBgBoldRedBlue,ansiBgBoldGreenBlue,ansiBgBoldYellowBlue,ansiBgBoldBlueBlue,ansiBgBoldMagentaBlue,ansiBgBoldCyanBlue,ansiBgBoldWhiteBlue
    syn region ansiBlueBg	concealends matchgroup=ansiNone start="\e\[;\=0\{0,2};\=\%(1;\)\=44\%(;1\)\=m" skip='\e\[K' end="\ze\e\[;\=[04m]"  contains=@AnsiBlueBgGroup,ansiConceal
    syn region ansiBgBlackBlue	contained	start="\e\[30m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
-   syn region ansiBgRedBlue	contained	start="\e\[31m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
+   syn region ansiBgRedBlue		contained	start="\e\[31m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
    syn region ansiBgGreenBlue	contained	start="\e\[32m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
    syn region ansiBgYellowBlue	contained	start="\e\[33m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
    syn region ansiBgBlueBlue	contained	start="\e\[34m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
    syn region ansiBgMagentaBlue	contained	start="\e\[35m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
    syn region ansiBgCyanBlue	contained	start="\e\[36m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
    syn region ansiBgWhiteBlue	contained	start="\e\[37m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
-   hi link ansiBgBlackBlue	ansiBlackBlue
-   hi link ansiBgRedBlue	ansiRedBlue
-   hi link ansiBgGreenBlue	ansiGreenBlue
-   hi link ansiBgYellowBlue	ansiYellowBlue
-   hi link ansiBgBlueBlue	ansiBlueBlue
+   hi link ansiBgBlackBlue		ansiBlackBlue
+   hi link ansiBgRedBlue		ansiRedBlue
+   hi link ansiBgGreenBlue		ansiGreenBlue
+   hi link ansiBgYellowBlue		ansiYellowBlue
+   hi link ansiBgBlueBlue		ansiBlueBlue
    hi link ansiBgMagentaBlue	ansiMagentaBlue
-   hi link ansiBgCyanBlue	ansiCyanBlue
-   hi link ansiBgWhiteBlue	ansiWhiteBlue
+   hi link ansiBgCyanBlue		ansiCyanBlue
+   hi link ansiBgWhiteBlue		ansiWhiteBlue
+   syn region ansiBgBoldBlackBlue	contained	start="\e\[1;30m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldRedBlue	contained	start="\e\[1;31m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldGreenBlue	contained	start="\e\[1;32m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldYellowBlue	contained	start="\e\[1;33m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldBlueBlue	contained	start="\e\[1;34m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldMagentaBlue	contained	start="\e\[1;35m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldCyanBlue	contained	start="\e\[1;36m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldWhiteBlue	contained	start="\e\[1;37m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   hi link ansiBgBoldBlackBlue	ansiBoldBlackBlue
+   hi link ansiBgBoldRedBlue	ansiBoldRedBlue
+   hi link ansiBgBoldGreenBlue	ansiBoldGreenBlue
+   hi link ansiBgBoldYellowBlue	ansiBoldYellowBlue
+   hi link ansiBgBoldBlueBlue	ansiBoldBlueBlue
+   hi link ansiBgBoldMagentaBlue	ansiBoldMagentaBlue
+   hi link ansiBgBoldCyanBlue	ansiBoldCyanBlue
+   hi link ansiBgBoldWhiteBlue	ansiBoldWhiteBlue
 
-   syn cluster AnsiMagentaBgGroup contains=ansiBgBlackMagenta,ansiBgRedMagenta,ansiBgGreenMagenta,ansiBgYellowMagenta,ansiBgBlueMagenta,ansiBgMagentaMagenta,ansiBgCyanMagenta,ansiBgWhiteMagenta
+   syn cluster AnsiMagentaBgGroup contains=ansiBgBlackMagenta,,ansiBgRedMagenta,ansiBgGreenMagenta,ansiBgYellowMagenta,ansiBgBlueMagenta,ansiBgMagentaMagenta,ansiBgCyanMagenta,ansiBgWhiteMagenta,ansiBgBoldBlackMagenta,ansiBgBoldRedMagenta,ansiBgBoldGreenMagenta,ansiBgBoldYellowMagenta,ansiBgBoldBlueMagenta,ansiBgBoldMagentaMagenta,ansiBgBoldCyanMagenta,ansiBgBoldWhiteMagenta
    syn region ansiMagentaBg	concealends matchgroup=ansiNone start="\e\[;\=0\{0,2};\=\%(1;\)\=45\%(;1\)\=m" skip='\e\[K' end="\ze\e\[;\=[04m]"  contains=@AnsiMagentaBgGroup,ansiConceal
    syn region ansiBgBlackMagenta	contained	start="\e\[30m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
    syn region ansiBgRedMagenta	contained	start="\e\[31m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
@@ -429,8 +511,24 @@ fun! AnsiEsc#AnsiEsc(rebuild)
    hi link ansiBgMagentaMagenta	ansiMagentaMagenta
    hi link ansiBgCyanMagenta	ansiCyanMagenta
    hi link ansiBgWhiteMagenta	ansiWhiteMagenta
+   syn region ansiBgBoldBlackMagenta	contained	start="\e\[1;30m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldRedMagenta	contained	start="\e\[1;31m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldGreenMagenta	contained	start="\e\[1;32m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldYellowMagenta	contained	start="\e\[1;33m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldBlueMagenta	contained	start="\e\[1;34m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldMagentaMagenta	contained	start="\e\[1;35m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldCyanMagenta	contained	start="\e\[1;36m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldWhiteMagenta	contained	start="\e\[1;37m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   hi link ansiBgBoldBlackMagenta	ansiBoldBlackMagenta
+   hi link ansiBgBoldRedMagenta	ansiBoldRedMagenta
+   hi link ansiBgBoldGreenMagenta	ansiBoldGreenMagenta
+   hi link ansiBgBoldYellowMagenta	ansiBoldYellowMagenta
+   hi link ansiBgBoldBlueMagenta	ansiBoldBlueMagenta
+   hi link ansiBgBoldMagentaMagenta	ansiBoldMagentaMagenta
+   hi link ansiBgBoldCyanMagenta	ansiBoldCyanMagenta
+   hi link ansiBgBoldWhiteMagenta	ansiBoldWhiteMagenta
 
-   syn cluster AnsiCyanBgGroup contains=ansiBgBlackCyan,ansiBgRedCyan,ansiBgGreenCyan,ansiBgYellowCyan,ansiBgBlueCyan,ansiBgMagentaCyan,ansiBgCyanCyan,ansiBgWhiteCyan
+   syn cluster AnsiCyanBgGroup contains=ansiBgBlackCyan,,ansiBgRedCyan,ansiBgGreenCyan,ansiBgYellowCyan,ansiBgBlueCyan,ansiBgMagentaCyan,ansiBgCyanCyan,ansiBgWhiteCyan,ansiBgBoldBlackCyan,ansiBgBoldRedCyan,ansiBgBoldGreenCyan,ansiBgBoldYellowCyan,ansiBgBoldBlueCyan,ansiBgBoldMagentaCyan,ansiBgBoldCyanCyan,ansiBgBoldWhiteCyan
    syn region ansiCyanBg	concealends matchgroup=ansiNone start="\e\[;\=0\{0,2};\=\%(1;\)\=46\%(;1\)\=m" skip='\e\[K' end="\ze\e\[;\=[04m]"  contains=@AnsiCyanBgGroup,ansiConceal
    syn region ansiBgBlackCyan	contained	start="\e\[30m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
    syn region ansiBgRedCyan	contained	start="\e\[31m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
@@ -448,8 +546,24 @@ fun! AnsiEsc#AnsiEsc(rebuild)
    hi link ansiBgMagentaCyan	ansiMagentaCyan
    hi link ansiBgCyanCyan	ansiCyanCyan
    hi link ansiBgWhiteCyan	ansiWhiteCyan
+   syn region ansiBgBoldBlackCyan	contained	start="\e\[1;30m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldRedCyan	contained	start="\e\[1;31m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldGreenCyan	contained	start="\e\[1;32m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldYellowCyan	contained	start="\e\[1;33m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldBlueCyan	contained	start="\e\[1;34m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldMagentaCyan	contained	start="\e\[1;35m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldCyanCyan	contained	start="\e\[1;36m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldWhiteCyan	contained	start="\e\[1;37m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   hi link ansiBgBoldBlackCyan	ansiBoldBlackCyan
+   hi link ansiBgBoldRedCyan	ansiBoldRedCyan
+   hi link ansiBgBoldGreenCyan	ansiBoldGreenCyan
+   hi link ansiBgBoldYellowCyan	ansiBoldYellowCyan
+   hi link ansiBgBoldBlueCyan	ansiBoldBlueCyan
+   hi link ansiBgBoldMagentaCyan	ansiBoldMagentaCyan
+   hi link ansiBgBoldCyanCyan	ansiBoldCyanCyan
+   hi link ansiBgBoldWhiteCyan	ansiBoldWhiteCyan
 
-   syn cluster AnsiWhiteBgGroup contains=ansiBgBlackWhite,ansiBgRedWhite,ansiBgGreenWhite,ansiBgYellowWhite,ansiBgBlueWhite,ansiBgMagentaWhite,ansiBgCyanWhite,ansiBgWhiteWhite
+   syn cluster AnsiWhiteBgGroup contains=ansiBgBlackWhite,,ansiBgRedWhite,ansiBgGreenWhite,ansiBgYellowWhite,ansiBgBlueWhite,ansiBgMagentaWhite,ansiBgCyanWhite,ansiBgWhiteWhite,ansiBgBoldBlackWhite,ansiBgBoldRedWhite,ansiBgBoldGreenWhite,ansiBgBoldYellowWhite,ansiBgBoldBlueWhite,ansiBgBoldMagentaWhite,ansiBgBoldCyanWhite,ansiBgBoldWhiteWhite
    syn region ansiWhiteBg	concealends matchgroup=ansiNone start="\e\[;\=0\{0,2};\=\%(1;\)\=47\%(;1\)\=m" skip='\e\[K' end="\ze\e\[;\=[04m]"  contains=@AnsiWhiteBgGroup,ansiConceal
    syn region ansiBgBlackWhite	contained	start="\e\[30m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
    syn region ansiBgRedWhite	contained	start="\e\[31m" skip='\e\[K' end="\ze\e\[[03m]" contains=ansiConceal
@@ -467,6 +581,22 @@ fun! AnsiEsc#AnsiEsc(rebuild)
    hi link ansiBgMagentaWhite	ansiMagentaWhite
    hi link ansiBgCyanWhite	ansiCyanWhite
    hi link ansiBgWhiteWhite	ansiWhiteWhite
+   syn region ansiBgBoldBlackWhite	contained	start="\e\[1;30m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldRedWhite	contained	start="\e\[1;31m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldGreenWhite	contained	start="\e\[1;32m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldYellowWhite	contained	start="\e\[1;33m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldBlueWhite	contained	start="\e\[1;34m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldMagentaWhite	contained	start="\e\[1;35m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldCyanWhite	contained	start="\e\[1;36m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   syn region ansiBgBoldWhiteWhite	contained	start="\e\[1;37m" skip='\e\[K' end="\ze\e\[;\=[013m]"  contains=ansiConceal
+   hi link ansiBgBoldBlackWhite	ansiBoldBlackWhite
+   hi link ansiBgBoldRedWhite	ansiBoldRedWhite
+   hi link ansiBgBoldGreenWhite	ansiBoldGreenWhite
+   hi link ansiBgBoldYellowWhite	ansiBoldYellowWhite
+   hi link ansiBgBoldBlueWhite	ansiBoldBlueWhite
+   hi link ansiBgBoldMagentaWhite	ansiBoldMagentaWhite
+   hi link ansiBgBoldCyanWhite	ansiBoldCyanWhite
+   hi link ansiBgBoldWhiteWhite	ansiBoldWhiteWhite
 
    "-----------------------------------------
    " handles implicit foreground highlighting
@@ -1133,78 +1263,149 @@ fun! AnsiEsc#AnsiEsc(rebuild)
    hi ansiRVCyan            ctermfg=cyan       guifg=cyan                                         cterm=reverse      gui=reverse
    hi ansiRVWhite           ctermfg=white      guifg=white                                        cterm=reverse      gui=reverse
 
-   hi ansiBlackBlack        ctermfg=black      ctermbg=black      guifg=Black      guibg=Black    cterm=none         gui=none
-   hi ansiRedBlack          ctermfg=black      ctermbg=black      guifg=Black      guibg=Black    cterm=none         gui=none
-   hi ansiRedBlack          ctermfg=red        ctermbg=black      guifg=Red        guibg=Black    cterm=none         gui=none
-   hi ansiGreenBlack        ctermfg=green      ctermbg=black      guifg=Green      guibg=Black    cterm=none         gui=none
-   hi ansiYellowBlack       ctermfg=yellow     ctermbg=black      guifg=Yellow     guibg=Black    cterm=none         gui=none
-   hi ansiBlueBlack         ctermfg=blue       ctermbg=black      guifg=Blue       guibg=Black    cterm=none         gui=none
-   hi ansiMagentaBlack      ctermfg=magenta    ctermbg=black      guifg=Magenta    guibg=Black    cterm=none         gui=none
-   hi ansiCyanBlack         ctermfg=cyan       ctermbg=black      guifg=Cyan       guibg=Black    cterm=none         gui=none
-   hi ansiWhiteBlack        ctermfg=white      ctermbg=black      guifg=White      guibg=Black    cterm=none         gui=none
+   hi ansiBlackBlack            ctermfg=black      ctermbg=black      guifg=Black      guibg=Black    cterm=none         gui=none
+   hi ansiRedBlack              ctermfg=red        ctermbg=black      guifg=Red        guibg=Black    cterm=none         gui=none
+   hi ansiGreenBlack            ctermfg=green      ctermbg=black      guifg=Green      guibg=Black    cterm=none         gui=none
+   hi ansiYellowBlack           ctermfg=yellow     ctermbg=black      guifg=Yellow     guibg=Black    cterm=none         gui=none
+   hi ansiBlueBlack             ctermfg=blue       ctermbg=black      guifg=Blue       guibg=Black    cterm=none         gui=none
+   hi ansiMagentaBlack          ctermfg=magenta    ctermbg=black      guifg=Magenta    guibg=Black    cterm=none         gui=none
+   hi ansiCyanBlack             ctermfg=cyan       ctermbg=black      guifg=Cyan       guibg=Black    cterm=none         gui=none
+   hi ansiWhiteBlack            ctermfg=white      ctermbg=black      guifg=White      guibg=Black    cterm=none         gui=none
 
-   hi ansiBlackRed          ctermfg=black      ctermbg=red        guifg=Black      guibg=Red      cterm=none         gui=none
-   hi ansiRedRed            ctermfg=red        ctermbg=red        guifg=Red        guibg=Red      cterm=none         gui=none
-   hi ansiGreenRed          ctermfg=green      ctermbg=red        guifg=Green      guibg=Red      cterm=none         gui=none
-   hi ansiYellowRed         ctermfg=yellow     ctermbg=red        guifg=Yellow     guibg=Red      cterm=none         gui=none
-   hi ansiBlueRed           ctermfg=blue       ctermbg=red        guifg=Blue       guibg=Red      cterm=none         gui=none
-   hi ansiMagentaRed        ctermfg=magenta    ctermbg=red        guifg=Magenta    guibg=Red      cterm=none         gui=none
-   hi ansiCyanRed           ctermfg=cyan       ctermbg=red        guifg=Cyan       guibg=Red      cterm=none         gui=none
-   hi ansiWhiteRed          ctermfg=white      ctermbg=red        guifg=White      guibg=Red      cterm=none         gui=none
+   hi ansiBoldBlackBlack        ctermfg=black      ctermbg=black      guifg=Black      guibg=Black    cterm=bold         gui=bold
+   hi ansiBoldRedBlack          ctermfg=red        ctermbg=black      guifg=Red        guibg=Black    cterm=bold         gui=bold
+   hi ansiBoldGreenBlack        ctermfg=green      ctermbg=black      guifg=Green      guibg=Black    cterm=bold         gui=bold
+   hi ansiBoldYellowBlack       ctermfg=yellow     ctermbg=black      guifg=Yellow     guibg=Black    cterm=bold         gui=bold
+   hi ansiBoldBlueBlack         ctermfg=blue       ctermbg=black      guifg=Blue       guibg=Black    cterm=bold         gui=bold
+   hi ansiBoldMagentaBlack      ctermfg=magenta    ctermbg=black      guifg=Magenta    guibg=Black    cterm=bold         gui=bold
+   hi ansiBoldCyanBlack         ctermfg=cyan       ctermbg=black      guifg=Cyan       guibg=Black    cterm=bold         gui=bold
+   hi ansiBoldWhiteBlack        ctermfg=white      ctermbg=black      guifg=White      guibg=Black    cterm=bold         gui=bold
 
-   hi ansiBlackGreen        ctermfg=black      ctermbg=green      guifg=Black      guibg=Green    cterm=none         gui=none
-   hi ansiRedGreen          ctermfg=red        ctermbg=green      guifg=Red        guibg=Green    cterm=none         gui=none
-   hi ansiGreenGreen        ctermfg=green      ctermbg=green      guifg=Green      guibg=Green    cterm=none         gui=none
-   hi ansiYellowGreen       ctermfg=yellow     ctermbg=green      guifg=Yellow     guibg=Green    cterm=none         gui=none
-   hi ansiBlueGreen         ctermfg=blue       ctermbg=green      guifg=Blue       guibg=Green    cterm=none         gui=none
-   hi ansiMagentaGreen      ctermfg=magenta    ctermbg=green      guifg=Magenta    guibg=Green    cterm=none         gui=none
-   hi ansiCyanGreen         ctermfg=cyan       ctermbg=green      guifg=Cyan       guibg=Green    cterm=none         gui=none
-   hi ansiWhiteGreen        ctermfg=white      ctermbg=green      guifg=White      guibg=Green    cterm=none         gui=none
+   hi ansiBlackRed              ctermfg=black      ctermbg=red        guifg=Black      guibg=Red      cterm=none         gui=none
+   hi ansiRedRed                ctermfg=red        ctermbg=red        guifg=Red        guibg=Red      cterm=none         gui=none
+   hi ansiGreenRed              ctermfg=green      ctermbg=red        guifg=Green      guibg=Red      cterm=none         gui=none
+   hi ansiYellowRed             ctermfg=yellow     ctermbg=red        guifg=Yellow     guibg=Red      cterm=none         gui=none
+   hi ansiBlueRed               ctermfg=blue       ctermbg=red        guifg=Blue       guibg=Red      cterm=none         gui=none
+   hi ansiMagentaRed            ctermfg=magenta    ctermbg=red        guifg=Magenta    guibg=Red      cterm=none         gui=none
+   hi ansiCyanRed               ctermfg=cyan       ctermbg=red        guifg=Cyan       guibg=Red      cterm=none         gui=none
+   hi ansiWhiteRed              ctermfg=white      ctermbg=red        guifg=White      guibg=Red      cterm=none         gui=none
 
-   hi ansiBlackYellow       ctermfg=black      ctermbg=yellow     guifg=Black      guibg=Yellow   cterm=none         gui=none
-   hi ansiRedYellow         ctermfg=red        ctermbg=yellow     guifg=Red        guibg=Yellow   cterm=none         gui=none
-   hi ansiGreenYellow       ctermfg=green      ctermbg=yellow     guifg=Green      guibg=Yellow   cterm=none         gui=none
-   hi ansiYellowYellow      ctermfg=yellow     ctermbg=yellow     guifg=Yellow     guibg=Yellow   cterm=none         gui=none
-   hi ansiBlueYellow        ctermfg=blue       ctermbg=yellow     guifg=Blue       guibg=Yellow   cterm=none         gui=none
-   hi ansiMagentaYellow     ctermfg=magenta    ctermbg=yellow     guifg=Magenta    guibg=Yellow   cterm=none         gui=none
-   hi ansiCyanYellow        ctermfg=cyan       ctermbg=yellow     guifg=Cyan       guibg=Yellow   cterm=none         gui=none
-   hi ansiWhiteYellow       ctermfg=white      ctermbg=yellow     guifg=White      guibg=Yellow   cterm=none         gui=none
+   hi ansiBoldBlackRed          ctermfg=black      ctermbg=red        guifg=Black      guibg=Red      cterm=bold         gui=bold
+   hi ansiBoldRedRed            ctermfg=red        ctermbg=red        guifg=Red        guibg=Red      cterm=bold         gui=bold
+   hi ansiBoldGreenRed          ctermfg=green      ctermbg=red        guifg=Green      guibg=Red      cterm=bold         gui=bold
+   hi ansiBoldYellowRed         ctermfg=yellow     ctermbg=red        guifg=Yellow     guibg=Red      cterm=bold         gui=bold
+   hi ansiBoldBlueRed           ctermfg=blue       ctermbg=red        guifg=Blue       guibg=Red      cterm=bold         gui=bold
+   hi ansiBoldMagentaRed        ctermfg=magenta    ctermbg=red        guifg=Magenta    guibg=Red      cterm=bold         gui=bold
+   hi ansiBoldCyanRed           ctermfg=cyan       ctermbg=red        guifg=Cyan       guibg=Red      cterm=bold         gui=bold
+   hi ansiBoldWhiteRed          ctermfg=white      ctermbg=red        guifg=White      guibg=Red      cterm=bold         gui=bold
 
-   hi ansiBlackBlue         ctermfg=black      ctermbg=blue       guifg=Black      guibg=Blue     cterm=none         gui=none
-   hi ansiRedBlue           ctermfg=red        ctermbg=blue       guifg=Red        guibg=Blue     cterm=none         gui=none
-   hi ansiGreenBlue         ctermfg=green      ctermbg=blue       guifg=Green      guibg=Blue     cterm=none         gui=none
-   hi ansiYellowBlue        ctermfg=yellow     ctermbg=blue       guifg=Yellow     guibg=Blue     cterm=none         gui=none
-   hi ansiBlueBlue          ctermfg=blue       ctermbg=blue       guifg=Blue       guibg=Blue     cterm=none         gui=none
-   hi ansiMagentaBlue       ctermfg=magenta    ctermbg=blue       guifg=Magenta    guibg=Blue     cterm=none         gui=none
-   hi ansiCyanBlue          ctermfg=cyan       ctermbg=blue       guifg=Cyan       guibg=Blue     cterm=none         gui=none
-   hi ansiWhiteBlue         ctermfg=white      ctermbg=blue       guifg=White      guibg=Blue     cterm=none         gui=none
+   hi ansiBlackGreen            ctermfg=black      ctermbg=green      guifg=Black      guibg=Green    cterm=none         gui=none
+   hi ansiRedGreen              ctermfg=red        ctermbg=green      guifg=Red        guibg=Green    cterm=none         gui=none
+   hi ansiGreenGreen            ctermfg=green      ctermbg=green      guifg=Green      guibg=Green    cterm=none         gui=none
+   hi ansiYellowGreen           ctermfg=yellow     ctermbg=green      guifg=Yellow     guibg=Green    cterm=none         gui=none
+   hi ansiBlueGreen             ctermfg=blue       ctermbg=green      guifg=Blue       guibg=Green    cterm=none         gui=none
+   hi ansiMagentaGreen          ctermfg=magenta    ctermbg=green      guifg=Magenta    guibg=Green    cterm=none         gui=none
+   hi ansiCyanGreen             ctermfg=cyan       ctermbg=green      guifg=Cyan       guibg=Green    cterm=none         gui=none
+   hi ansiWhiteGreen            ctermfg=white      ctermbg=green      guifg=White      guibg=Green    cterm=none         gui=none
 
-   hi ansiBlackMagenta      ctermfg=black      ctermbg=magenta    guifg=Black      guibg=Magenta  cterm=none         gui=none
-   hi ansiRedMagenta        ctermfg=red        ctermbg=magenta    guifg=Red        guibg=Magenta  cterm=none         gui=none
-   hi ansiGreenMagenta      ctermfg=green      ctermbg=magenta    guifg=Green      guibg=Magenta  cterm=none         gui=none
-   hi ansiYellowMagenta     ctermfg=yellow     ctermbg=magenta    guifg=Yellow     guibg=Magenta  cterm=none         gui=none
-   hi ansiBlueMagenta       ctermfg=blue       ctermbg=magenta    guifg=Blue       guibg=Magenta  cterm=none         gui=none
-   hi ansiMagentaMagenta    ctermfg=magenta    ctermbg=magenta    guifg=Magenta    guibg=Magenta  cterm=none         gui=none
-   hi ansiCyanMagenta       ctermfg=cyan       ctermbg=magenta    guifg=Cyan       guibg=Magenta  cterm=none         gui=none
-   hi ansiWhiteMagenta      ctermfg=white      ctermbg=magenta    guifg=White      guibg=Magenta  cterm=none         gui=none
+   hi ansiBoldBlackGreen        ctermfg=black      ctermbg=green      guifg=Black      guibg=Green    cterm=bold         gui=bold
+   hi ansiBoldRedGreen          ctermfg=red        ctermbg=green      guifg=Red        guibg=Green    cterm=bold         gui=bold
+   hi ansiBoldGreenGreen        ctermfg=green      ctermbg=green      guifg=Green      guibg=Green    cterm=bold         gui=bold
+   hi ansiBoldYellowGreen       ctermfg=yellow     ctermbg=green      guifg=Yellow     guibg=Green    cterm=bold         gui=bold
+   hi ansiBoldBlueGreen         ctermfg=blue       ctermbg=green      guifg=Blue       guibg=Green    cterm=bold         gui=bold
+   hi ansiBoldMagentaGreen      ctermfg=magenta    ctermbg=green      guifg=Magenta    guibg=Green    cterm=bold         gui=bold
+   hi ansiBoldCyanGreen         ctermfg=cyan       ctermbg=green      guifg=Cyan       guibg=Green    cterm=bold         gui=bold
+   hi ansiBoldWhiteGreen        ctermfg=white      ctermbg=green      guifg=White      guibg=Green    cterm=bold         gui=bold
 
-   hi ansiBlackCyan         ctermfg=black      ctermbg=cyan       guifg=Black      guibg=Cyan     cterm=none         gui=none
-   hi ansiRedCyan           ctermfg=red        ctermbg=cyan       guifg=Red        guibg=Cyan     cterm=none         gui=none
-   hi ansiGreenCyan         ctermfg=green      ctermbg=cyan       guifg=Green      guibg=Cyan     cterm=none         gui=none
-   hi ansiYellowCyan        ctermfg=yellow     ctermbg=cyan       guifg=Yellow     guibg=Cyan     cterm=none         gui=none
-   hi ansiBlueCyan          ctermfg=blue       ctermbg=cyan       guifg=Blue       guibg=Cyan     cterm=none         gui=none
-   hi ansiMagentaCyan       ctermfg=magenta    ctermbg=cyan       guifg=Magenta    guibg=Cyan     cterm=none         gui=none
-   hi ansiCyanCyan          ctermfg=cyan       ctermbg=cyan       guifg=Cyan       guibg=Cyan     cterm=none         gui=none
-   hi ansiWhiteCyan         ctermfg=white      ctermbg=cyan       guifg=White      guibg=Cyan     cterm=none         gui=none
+   hi ansiBlackYellow           ctermfg=black      ctermbg=yellow     guifg=Black      guibg=Yellow   cterm=none         gui=none
+   hi ansiRedYellow             ctermfg=red        ctermbg=yellow     guifg=Red        guibg=Yellow   cterm=none         gui=none
+   hi ansiGreenYellow           ctermfg=green      ctermbg=yellow     guifg=Green      guibg=Yellow   cterm=none         gui=none
+   hi ansiYellowYellow          ctermfg=yellow     ctermbg=yellow     guifg=Yellow     guibg=Yellow   cterm=none         gui=none
+   hi ansiBlueYellow            ctermfg=blue       ctermbg=yellow     guifg=Blue       guibg=Yellow   cterm=none         gui=none
+   hi ansiMagentaYellow         ctermfg=magenta    ctermbg=yellow     guifg=Magenta    guibg=Yellow   cterm=none         gui=none
+   hi ansiCyanYellow            ctermfg=cyan       ctermbg=yellow     guifg=Cyan       guibg=Yellow   cterm=none         gui=none
+   hi ansiWhiteYellow           ctermfg=white      ctermbg=yellow     guifg=White      guibg=Yellow   cterm=none         gui=none
 
-   hi ansiBlackWhite        ctermfg=black      ctermbg=white      guifg=Black      guibg=White    cterm=none         gui=none
-   hi ansiRedWhite          ctermfg=red        ctermbg=white      guifg=Red        guibg=White    cterm=none         gui=none
-   hi ansiGreenWhite        ctermfg=green      ctermbg=white      guifg=Green      guibg=White    cterm=none         gui=none
-   hi ansiYellowWhite       ctermfg=yellow     ctermbg=white      guifg=Yellow     guibg=White    cterm=none         gui=none
-   hi ansiBlueWhite         ctermfg=blue       ctermbg=white      guifg=Blue       guibg=White    cterm=none         gui=none
-   hi ansiMagentaWhite      ctermfg=magenta    ctermbg=white      guifg=Magenta    guibg=White    cterm=none         gui=none
-   hi ansiCyanWhite         ctermfg=cyan       ctermbg=white      guifg=Cyan       guibg=White    cterm=none         gui=none
-   hi ansiWhiteWhite        ctermfg=white      ctermbg=white      guifg=White      guibg=White    cterm=none         gui=none
+   hi ansiBoldBlackYellow       ctermfg=black      ctermbg=yellow     guifg=Black      guibg=Yellow   cterm=bold         gui=bold
+   hi ansiBoldRedYellow         ctermfg=red        ctermbg=yellow     guifg=Red        guibg=Yellow   cterm=bold         gui=bold
+   hi ansiBoldGreenYellow       ctermfg=green      ctermbg=yellow     guifg=Green      guibg=Yellow   cterm=bold         gui=bold
+   hi ansiBoldYellowYellow      ctermfg=yellow     ctermbg=yellow     guifg=Yellow     guibg=Yellow   cterm=bold         gui=bold
+   hi ansiBoldBlueYellow        ctermfg=blue       ctermbg=yellow     guifg=Blue       guibg=Yellow   cterm=bold         gui=bold
+   hi ansiBoldMagentaYellow     ctermfg=magenta    ctermbg=yellow     guifg=Magenta    guibg=Yellow   cterm=bold         gui=bold
+   hi ansiBoldCyanYellow        ctermfg=cyan       ctermbg=yellow     guifg=Cyan       guibg=Yellow   cterm=bold         gui=bold
+   hi ansiBoldWhiteYellow       ctermfg=white      ctermbg=yellow     guifg=White      guibg=Yellow   cterm=bold         gui=bold
+
+   hi ansiBlackBlue             ctermfg=black      ctermbg=blue       guifg=Black      guibg=Blue     cterm=none         gui=none
+   hi ansiRedBlue               ctermfg=red        ctermbg=blue       guifg=Red        guibg=Blue     cterm=none         gui=none
+   hi ansiGreenBlue             ctermfg=green      ctermbg=blue       guifg=Green      guibg=Blue     cterm=none         gui=none
+   hi ansiYellowBlue            ctermfg=yellow     ctermbg=blue       guifg=Yellow     guibg=Blue     cterm=none         gui=none
+   hi ansiBlueBlue              ctermfg=blue       ctermbg=blue       guifg=Blue       guibg=Blue     cterm=none         gui=none
+   hi ansiMagentaBlue           ctermfg=magenta    ctermbg=blue       guifg=Magenta    guibg=Blue     cterm=none         gui=none
+   hi ansiCyanBlue              ctermfg=cyan       ctermbg=blue       guifg=Cyan       guibg=Blue     cterm=none         gui=none
+   hi ansiWhiteBlue             ctermfg=white      ctermbg=blue       guifg=White      guibg=Blue     cterm=none         gui=none
+
+   hi ansiBoldBlackBlue         ctermfg=black      ctermbg=blue       guifg=Black      guibg=Blue     cterm=bold         gui=bold
+   hi ansiBoldRedBlue           ctermfg=red        ctermbg=blue       guifg=Red        guibg=Blue     cterm=bold         gui=bold
+   hi ansiBoldGreenBlue         ctermfg=green      ctermbg=blue       guifg=Green      guibg=Blue     cterm=bold         gui=bold
+   hi ansiBoldYellowBlue        ctermfg=yellow     ctermbg=blue       guifg=Yellow     guibg=Blue     cterm=bold         gui=bold
+   hi ansiBoldBlueBlue          ctermfg=blue       ctermbg=blue       guifg=Blue       guibg=Blue     cterm=bold         gui=bold
+   hi ansiBoldMagentaBlue       ctermfg=magenta    ctermbg=blue       guifg=Magenta    guibg=Blue     cterm=bold         gui=bold
+   hi ansiBoldCyanBlue          ctermfg=cyan       ctermbg=blue       guifg=Cyan       guibg=Blue     cterm=bold         gui=bold
+   hi ansiBoldWhiteBlue         ctermfg=white      ctermbg=blue       guifg=White      guibg=Blue     cterm=bold         gui=bold
+
+   hi ansiBlackMagenta          ctermfg=black      ctermbg=magenta    guifg=Black      guibg=Magenta  cterm=none         gui=none
+   hi ansiRedMagenta            ctermfg=red        ctermbg=magenta    guifg=Red        guibg=Magenta  cterm=none         gui=none
+   hi ansiGreenMagenta          ctermfg=green      ctermbg=magenta    guifg=Green      guibg=Magenta  cterm=none         gui=none
+   hi ansiYellowMagenta         ctermfg=yellow     ctermbg=magenta    guifg=Yellow     guibg=Magenta  cterm=none         gui=none
+   hi ansiBlueMagenta           ctermfg=blue       ctermbg=magenta    guifg=Blue       guibg=Magenta  cterm=none         gui=none
+   hi ansiMagentaMagenta        ctermfg=magenta    ctermbg=magenta    guifg=Magenta    guibg=Magenta  cterm=none         gui=none
+   hi ansiCyanMagenta           ctermfg=cyan       ctermbg=magenta    guifg=Cyan       guibg=Magenta  cterm=none         gui=none
+   hi ansiWhiteMagenta          ctermfg=white      ctermbg=magenta    guifg=White      guibg=Magenta  cterm=none         gui=none
+
+   hi ansiBoldBlackMagenta      ctermfg=black      ctermbg=magenta    guifg=Black      guibg=Magenta  cterm=bold         gui=bold
+   hi ansiBoldRedMagenta        ctermfg=red        ctermbg=magenta    guifg=Red        guibg=Magenta  cterm=bold         gui=bold
+   hi ansiBoldGreenMagenta      ctermfg=green      ctermbg=magenta    guifg=Green      guibg=Magenta  cterm=bold         gui=bold
+   hi ansiBoldYellowMagenta     ctermfg=yellow     ctermbg=magenta    guifg=Yellow     guibg=Magenta  cterm=bold         gui=bold
+   hi ansiBoldBlueMagenta       ctermfg=blue       ctermbg=magenta    guifg=Blue       guibg=Magenta  cterm=bold         gui=bold
+   hi ansiBoldMagentaMagenta    ctermfg=magenta    ctermbg=magenta    guifg=Magenta    guibg=Magenta  cterm=bold         gui=bold
+   hi ansiBoldCyanMagenta       ctermfg=cyan       ctermbg=magenta    guifg=Cyan       guibg=Magenta  cterm=bold         gui=bold
+   hi ansiBoldWhiteMagenta      ctermfg=white      ctermbg=magenta    guifg=White      guibg=Magenta  cterm=bold         gui=bold
+
+   hi ansiBlackCyan             ctermfg=black      ctermbg=cyan       guifg=Black      guibg=Cyan     cterm=none         gui=none
+   hi ansiRedCyan               ctermfg=red        ctermbg=cyan       guifg=Red        guibg=Cyan     cterm=none         gui=none
+   hi ansiGreenCyan             ctermfg=green      ctermbg=cyan       guifg=Green      guibg=Cyan     cterm=none         gui=none
+   hi ansiYellowCyan            ctermfg=yellow     ctermbg=cyan       guifg=Yellow     guibg=Cyan     cterm=none         gui=none
+   hi ansiBlueCyan              ctermfg=blue       ctermbg=cyan       guifg=Blue       guibg=Cyan     cterm=none         gui=none
+   hi ansiMagentaCyan           ctermfg=magenta    ctermbg=cyan       guifg=Magenta    guibg=Cyan     cterm=none         gui=none
+   hi ansiCyanCyan              ctermfg=cyan       ctermbg=cyan       guifg=Cyan       guibg=Cyan     cterm=none         gui=none
+   hi ansiWhiteCyan             ctermfg=white      ctermbg=cyan       guifg=White      guibg=Cyan     cterm=none         gui=none
+
+   hi ansiBoldBlackCyan         ctermfg=black      ctermbg=cyan       guifg=Black      guibg=Cyan     cterm=bold         gui=bold
+   hi ansiBoldRedCyan           ctermfg=red        ctermbg=cyan       guifg=Red        guibg=Cyan     cterm=bold         gui=bold
+   hi ansiBoldGreenCyan         ctermfg=green      ctermbg=cyan       guifg=Green      guibg=Cyan     cterm=bold         gui=bold
+   hi ansiBoldYellowCyan        ctermfg=yellow     ctermbg=cyan       guifg=Yellow     guibg=Cyan     cterm=bold         gui=bold
+   hi ansiBoldBlueCyan          ctermfg=blue       ctermbg=cyan       guifg=Blue       guibg=Cyan     cterm=bold         gui=bold
+   hi ansiBoldMagentaCyan       ctermfg=magenta    ctermbg=cyan       guifg=Magenta    guibg=Cyan     cterm=bold         gui=bold
+   hi ansiBoldCyanCyan          ctermfg=cyan       ctermbg=cyan       guifg=Cyan       guibg=Cyan     cterm=bold         gui=bold
+   hi ansiBoldWhiteCyan         ctermfg=white      ctermbg=cyan       guifg=White      guibg=Cyan     cterm=bold         gui=bold
+
+   hi ansiBlackWhite            ctermfg=black      ctermbg=white      guifg=Black      guibg=White    cterm=none         gui=none
+   hi ansiRedWhite              ctermfg=red        ctermbg=white      guifg=Red        guibg=White    cterm=none         gui=none
+   hi ansiGreenWhite            ctermfg=green      ctermbg=white      guifg=Green      guibg=White    cterm=none         gui=none
+   hi ansiYellowWhite           ctermfg=yellow     ctermbg=white      guifg=Yellow     guibg=White    cterm=none         gui=none
+   hi ansiBlueWhite             ctermfg=blue       ctermbg=white      guifg=Blue       guibg=White    cterm=none         gui=none
+   hi ansiMagentaWhite          ctermfg=magenta    ctermbg=white      guifg=Magenta    guibg=White    cterm=none         gui=none
+   hi ansiCyanWhite             ctermfg=cyan       ctermbg=white      guifg=Cyan       guibg=White    cterm=none         gui=none
+   hi ansiWhiteWhite            ctermfg=white      ctermbg=white      guifg=White      guibg=White    cterm=none         gui=none
+
+   hi ansiBoldBlackWhite        ctermfg=black      ctermbg=white      guifg=Black      guibg=White    cterm=bold         gui=bold
+   hi ansiBoldRedWhite          ctermfg=red        ctermbg=white      guifg=Red        guibg=White    cterm=bold         gui=bold
+   hi ansiBoldGreenWhite        ctermfg=green      ctermbg=white      guifg=Green      guibg=White    cterm=bold         gui=bold
+   hi ansiBoldYellowWhite       ctermfg=yellow     ctermbg=white      guifg=Yellow     guibg=White    cterm=bold         gui=bold
+   hi ansiBoldBlueWhite         ctermfg=blue       ctermbg=white      guifg=Blue       guibg=White    cterm=bold         gui=bold
+   hi ansiBoldMagentaWhite      ctermfg=magenta    ctermbg=white      guifg=Magenta    guibg=White    cterm=bold         gui=bold
+   hi ansiBoldCyanWhite         ctermfg=cyan       ctermbg=white      guifg=Cyan       guibg=White    cterm=bold         gui=bold
+   hi ansiBoldWhiteWhite        ctermfg=white      ctermbg=white      guifg=White      guibg=White    cterm=bold         gui=bold
   endif
 "  call Dret("AnsiEsc#AnsiEsc")
 endfun
@@ -1464,7 +1665,7 @@ unlet s:keepcpo
 
 " ---------------------------------------------------------------------
 "  Modelines: {{{1
-" vim: ts=12 fdm=marker
+" vim: ts=14 fdm=marker
 plugin/cecutil.vim	[[[1
 601
 " cecutil.vim : save/restore window position
@@ -2069,10 +2270,10 @@ unlet s:keepcpo
 " ================
 " vim: ts=4 fdm=marker
 doc/AnsiEsc.txt	[[[1
-227
-*AnsiEsc.txt*	Ansi Escape Sequence Visualization		Apr 10, 2018
+233
+*AnsiEsc.txt*	Ansi Escape Sequence Visualization		Jul 21, 2020
 
-Author:  Charles E. Campbell  <NdrOchip@ScampbellPfamily.AbizM>
+Author:  Charles E. Campbell  <NcampObell@SdrPchip.AorgM-NOSPAM>
 	  (remove NOSPAM from Campbell's email first)
 Copyright: (c) 2004-2017 by Charles E. Campbell		*AnsiEsc-copyright*
            The VIM LICENSE applies to AnsiEsc.vim and AnsiEsc.txt
@@ -2264,6 +2465,12 @@ a variable set of syntax highlighting rules.  I did it this way because things
 	Apr 10, 2018	* (James McCoy) provided a patch so that the
 			  |'highlight'| option is no longer used when
 			  conceal is available (see |'conceallevel'|)
+	May 01, 2019	* (barrie) reported that <esc>[24m was showing up as
+			  a "stray m".  Reason: ansiSuppress wasn't handling
+			  the code.
+	Jul 21, 2020	* (Sergey Vlasov) reported that bold text atop
+			  variously colored backgrounds wasn't being
+			  highlighted.
   v12	Jul 23, 2010	* changed conc to |'cole'| to correspond to vim 7.3's
 			  change
 			* for menus, &go =~# used to insure correct case
