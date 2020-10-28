@@ -1,8 +1,16 @@
 ## Vim preconfigure
-* Install pathogen
-* Copy following bundles:
-- ansible-vim
-- vim-colors-bluedrake
-- vim-grammarous
-- vim-terraform
-- synastic
+### AnsiEsc
+To add AnsiEsc:
+```
+   vim AnsiEsc.vba
+```
+And then:
+```
+   source %
+```
+### wc
+There is 'wc' plugin in plugin directory.
+
+### Plugins via plug
+Other plugins are covered by plug config in vimrc
+
