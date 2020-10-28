@@ -14,10 +14,8 @@ Plug 'hashivim/vim-terraform'
 Plug 'michaelmalick/vim-colors-bluedrake'
 Plug 'rhysd/vim-grammarous'
 Plug 'vim-syntastic/syntastic'
+Plug 'udalov/kotlin-vim'
 call plug#end()
-
-"call pathogen to easy configuration extension
-execute pathogen#infect()
 
 filetype on
 filetype plugin indent on
