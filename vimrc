@@ -13,7 +13,7 @@ Plug 'pearofducks/ansible-vim'
 Plug 'hashivim/vim-terraform'
 Plug 'michaelmalick/vim-colors-bluedrake'
 Plug 'rhysd/vim-grammarous'
-Plug 'vim-syntastic/syntastic'
+Plug 'dense-analysis/ale'
 Plug 'udalov/kotlin-vim'
 call plug#end()
 
@@ -53,6 +53,7 @@ set laststatus=2 "show status line for each window
 "set statusline=%f,\ %m%r%y%w:,\ col=%d,\ line=%l/%L\ %p%%,\ time=%{localtime()}
 "
 set hlsearch "highlight search results
+map <leader>i :if &ic<Bar> set noic<Bar>else<Bar>set ic<Bar>endif<CR>
 
 set mouse=a
 set mousem=extend
@@ -60,7 +61,7 @@ set mousem=extend
 set tabstop=2				" tab lenght
 set softtabstop=2		" for delete/backspace
 set shiftwidth=2		" for '>' '<'
-set noexpandtab			" set et moved to python
+set expandtab			" Need to set noet
 
 "set cindent "smart indent
 set smartindent "smart indent
