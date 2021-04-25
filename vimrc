@@ -15,6 +15,7 @@ Plug 'michaelmalick/vim-colors-bluedrake'
 Plug 'rhysd/vim-grammarous'
 Plug 'dense-analysis/ale'
 Plug 'udalov/kotlin-vim'
+Plug 'andrewstuart/vim-kubernetes'
 call plug#end()
 
 filetype on
