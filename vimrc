@@ -59,7 +59,7 @@ map <leader>i :if &ic<Bar> set noic<Bar>else<Bar>set ic<Bar>endif<CR>
 set mouse=a
 set mousem=extend
 
-set tabstop=2				" tab lenght
+#set tabstop=2				" tab lenght - rather not to change
 set softtabstop=2		" for delete/backspace
 set shiftwidth=2		" for '>' '<'
 set expandtab			" Need to set noet
