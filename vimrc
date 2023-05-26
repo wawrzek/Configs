@@ -16,6 +16,7 @@ Plug 'rhysd/vim-grammarous'
 Plug 'dense-analysis/ale'
 Plug 'udalov/kotlin-vim'
 Plug 'andrewstuart/vim-kubernetes'
+Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
 filetype on
@@ -23,7 +24,7 @@ filetype plugin indent on
 set modeline "look for vim directives in code file
 
 " Set colours
-set t_Co=256
+"set t_Co=256
 set background=dark
 colorscheme bluedrake
 map <leader>b :if &background=='dark'<Bar>set background=light<Bar>else<Bar>set background=dark<Bar>endif<CR>
