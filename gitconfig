@@ -1,6 +1,6 @@
 [user]
 	name = Wawrzyniec 'Wawrzek' Niewodniczański
-	email = wawrzek@ivynetwork.io
+	email = main@wawrzek.name
 [color]
 	branch = auto
 	diff = auto
@@ -16,3 +16,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[commit]
+	gpgsign = true
