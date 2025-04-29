@@ -1,40 +1,62 @@
-eval $(dircolors ~/Code/dircolors-solarized/dircolors.256dark)
-# colored completion - use my LS_COLORS
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+# Path to your oh-my-zsh installation.
+export ZSH="/home/niewod/.oh-my-zsh"
 
+ZSH_THEME="agnoster"
 
-zmodload zsh/mapfile
+# OLD setting maybe are useful
+#bindkey -e
+#bindkey '\e[3~' delete-char
+#bindkey '^R' history-incremental-search-backward
+#
+#autoload -Uz compinit
+#compinit
+#
 
-source ~/.zshprompt
+# NOT USED, but interesting settings
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-setopt CORRECT
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-bindkey -e
-bindkey '\e[3~' delete-char
-bindkey '^R' history-incremental-search-backward
+# Uncomment the following line if pasting URLs and other text is messed up.
+DISABLE_MAGIC_FUNCTIONS=true
 
-autoload -Uz compinit
-compinit
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=${HOME}/.zsh_history
-alias history='history -10000'
-setopt append_history
-setopt inc_append_history
-setopt share_history
-setopt extended_history
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_ignore_all_dups
-setopt hist_find_no_dups
-setopt hist_reduce_blanks
-setopt hist_no_functions
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+plugins=(gitfast git)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+eval $(dircolors ~/.dircolors)
+source ~/.zsh_$(uname)
 source ~/.zssh
 sshagent
 
-source ~/.zsh_functions
+export GPG_TTY=$(tty)
 
-source ~/.zaws
-. <(azure --completion)

@@ -1,0 +1,18 @@
+prt-footprint () {
+
+  prt-get cat $1 .footprint
+}
+
+
+export MOZ_DBUS_REMOTE=1
+export MAIL=$HOME/Mail
+export MAILDIR=$MAIL
+export XDG_DATA_DIRS=$XDG_DATA_DIRS:$HOME/.local/share/applications:$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share/applications
+
+
+source ~/.iterm2_shell_integration.zsh
+
+alias open="xdg-open"
+alias mypython="source /home/niewod/.local/bin/activate"
+
+alias muzyka="ncmpcpp"
