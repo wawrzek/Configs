@@ -1,0 +1,14 @@
+source ~/.iterm2_shell_integration.zsh
+
+# GCloud
+source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+
+# Postgres
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+
+#alias python='python3'
+export PATH="/opt/homebrew/opt/python/libexec/bin:${PATH}"
+
+# Pip/Python for user
+export PATH="$HOME/Library/Python/3.13/bin:$PATH"
