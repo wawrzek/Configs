@@ -8,7 +8,7 @@ do
 done
 }
 
-zsh_configs=(zshenv zshrc zssh zaws zazure zlogout)
+zsh_configs=(zshenv zshrc zssh zaws zazure zlogout zsh_$(uname))
 vim_configs=(vimrc gvimrc)
 git_configs=(gitignore gitconfig)
 
