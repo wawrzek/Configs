@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/home/niewod/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="agnoster"
 
@@ -53,10 +53,12 @@ plugins=(gitfast git)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-eval $(dircolors ~/.dircolors)
 source ~/.zsh_$(uname)
 source ~/.zssh
 sshagent
 
 export GPG_TTY=$(tty)
+
+# Extra special thing per machine (e.g. company settings)
+test -f ~/.zsh_local && source ~/.zsh_local
 
