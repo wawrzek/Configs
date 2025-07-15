@@ -8,10 +8,12 @@ do
 done
 }
 
-zsh_configs=(zshenv zshrc zlogout zsh_functions zssh zzsh_$(uname) aws zazure zgcp)
+zsh_configs=(zshenv zlogout zsh_functions zssh zzsh_$(uname) aws zazure zgcp)
 vim_configs=(vimrc gvimrc)
-git_configs=(gitignore gitconfig)
-
+git_configs=(gitignore)
+special_configs=(zshrc gitconfig)
+# Not idea to copy gitconfig or zshrc, because of local changes
+# TODO: print diff and ask if to apply
 copy_config $zsh_configs $vim_configs $git_configs
 
 echo "Copying vim directory"

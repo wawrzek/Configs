@@ -5,6 +5,3 @@ export PATH="/opt/homebrew/bin:${PATH}"
 
 #alias python='python3'
 export PATH="/opt/homebrew/opt/python/libexec/bin:${PATH}"
-
-# Pip/Python for user
-export PATH="${HOME}/Library/Python/3.13/bin:${PATH}"
