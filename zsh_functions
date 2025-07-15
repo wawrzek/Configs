@@ -5,6 +5,4 @@ function cdt ()
   cd $(git rev-parse --show-toplevel)
 }
 
-alias cdg="cd $(git rev-parse --show-top-level)"
-
 alias gistory="history | grep"
