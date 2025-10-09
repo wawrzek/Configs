@@ -1,8 +1,7 @@
+alias gistory="history | grep"
 alias starta="source $HOME/bin/ansible/bin/activate"
 
-function cdt ()
+cdt ()
 {
   cd $(git rev-parse --show-toplevel)
 }
-
-alias gistory="history | grep"
