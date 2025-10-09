@@ -34,7 +34,7 @@ map <leader>b :if &background=='dark'<Bar>set background=light<Bar>else<Bar>set 
 
 if &diff
   syntax off
-  colorscheme calmar256-dark
+  colorscheme calmar256
 else
   syntax on
   if hostname() == 'titan'
