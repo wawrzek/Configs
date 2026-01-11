@@ -8,7 +8,7 @@ do
 done
 }
 
-zsh_configs=(zshenv zlogout zsh_functions zssh zzsh_$(uname) aws zazure zgcp)
+zsh_configs=(zshenv zlogout zsh_functions zssh zsh_$(uname) zaws zazure zgcp)
 vim_configs=(vimrc gvimrc)
 git_configs=(gitignore)
 special_configs=(zshrc gitconfig)
