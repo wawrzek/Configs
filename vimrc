@@ -22,6 +22,15 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 call plug#end()
 
+" Store Backup files
+set backup
+set backupdir=~/.vim/backup//
+" Store UnDo files
+set undofile
+set undodir=~/.vim/undo//
+" Store swap files
+set directory=~/.vim/swap//
+
 filetype on
 filetype plugin indent on
 set modeline "look for vim directives in code file
