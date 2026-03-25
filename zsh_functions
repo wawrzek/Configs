@@ -1,5 +1,6 @@
 alias gistory="history | grep"
 alias starta="source $HOME/bin/ansible/bin/activate"
+alias gbc="git branch | cat"
 
 cdt ()
 {
