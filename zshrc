@@ -49,14 +49,16 @@ plugins=(gitfast git)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-source ~/.zsh_functions
-source ~/.zsh_$(uname)
+#### EXTRAS ####
+# SSH config
 source ~/.zssh
 sshagent
 
 export GPG_TTY=$(tty)
 
+# User configuration
+source ~/.zsh_functions
+test -f ~/._$(uname) && source ~/.zsh_$(uname)
+
 # Extra special thing per machine (e.g. company settings)
 test -f ~/.zsh_local && source ~/.zsh_local
-
